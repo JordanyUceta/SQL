@@ -1,0 +1,15 @@
+SELECT * FROM owners o FULL JOIN vehicles v ON o.id = v.owner_id; 
+
+SELECT o.first_name, o.last_name, COUNT(owner_id) as total 
+FROM owners o 
+JOIN vehicles v ON o.id = v.owner_id 
+GROUP BY o.first_name, o.last_name 
+ORDER BY o.first_name;
+
+SELECT o.first_name, o.last_name, AVG(price), COUNT(owner_id) AS total
+FROM owners o 
+JOIN vehicles v on o.id = v.owner_id
+GROUP BY o.first_name, o.last_name 
+HAVING COUNT(owner_id) > 1 AND AVG(price) > 10000
+ORDER BY o.first_name DESC;
+
